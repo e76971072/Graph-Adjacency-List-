@@ -72,9 +72,9 @@ Node 6:  1(w=0), 2(w=0), 3(w=0), 5(w=0), 6(w=0),
 
 Enter your commands:  quit
 
-User1s-MacBook-Pro:zpp390-hw6 main$ clear
 
-User1s-MacBook-Pro:zpp390-hw6 main$ make
+
+: main$ make
 gcc -I booklib -g -c graph.c
 gcc -I booklib -g -o graph graph.o qlist.o booklib/cslib.a
 User1s-MacBook-Pro:zpp390-hw6 main$ ./graph undirectedgraph1.txt 
@@ -241,9 +241,8 @@ Node 6:
 
 Enter your commands:  quit
 
-User1s-MacBook-Pro:zpp390-hw6 main$ make
-make: Nothing to be done for `all'.
-User1s-MacBook-Pro:zpp390-hw6 main$ ./graph directedgraph.txt 
+: main$ make
+./graph directedgraph.txt 
 
 
 ********************************LIST OF COMMNANDS*************************************
