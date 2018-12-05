@@ -1,0 +1,286 @@
+./graph undirectedgraph1.txt 
+
+
+********************************LIST OF COMMNANDS*************************************
+
+			[  copy  ]: Copy Graph
+			[insert]: Insert an edge
+			[  delete  ]: Delete an edge
+			[eleminate]: Eleminate links
+			[  print_degree  ]:print degree
+			[  dfs  ]: Depth first search
+			[  bfs  ]: Breath first search
+			[  print_complement  ]: Print complement
+			[  print_degree  ]: print degree of graph
+			[  number_component  ]: Number of complement
+			[  different_links  ]: Different links
+			[  common_links  ]: Common links
+			[  print  ]: Print the graph
+			[  connected  ]:If the graph is Connected or not
+			Enter <help> for list of command
+			[  quit  ]: Quit program
+
+Enter your commands:  insert
+
+Enter: (myg1 or myg2),[x],[y],[w]: myg1 3 4 10
+Graph Name: myg1
+Node 1:  2(w=3), 3(w=6),
+Node 2:  1(w=3), 3(w=1), 4(w=5),
+Node 3:  1(w=6), 2(w=1), 4(w=10), 5(w=2),
+Node 4:  2(w=5), 3(w=10), 5(w=3), 6(w=6),
+Node 5:  3(w=2), 4(w=3), 6(w=1),
+Node 6:  4(w=6), 5(w=1),
+
+Enter your commands:  delete
+
+Enter: [myg1 or myg2], [x], [y]: myg2 6 5 
+Graph Name: ***myg2 after delete****
+Node 1:  2(w=3), 3(w=6),
+Node 2:  1(w=3), 3(w=1), 4(w=5),
+Node 3:  1(w=6), 2(w=1), 5(w=2),
+Node 4:  2(w=5), 5(w=3), 6(w=6),
+Node 5:  3(w=2), 4(w=3),
+Node 6:  4(w=6),
+
+Enter your commands:  eleminate
+
+Enter: [myg1 or myg1], [minw], [maxW]: myg1 5 7
+Graph Name: ***Myg1 after elelinate link***
+Node 1:  3(w=6),
+Node 2:  4(w=5),
+Node 3: 
+Node 4:  6(w=6),
+Node 5: 
+Node 6: 
+
+Enter your commands:  print_complement
+
+Graph Name: Complement
+Node 1:  1(w=0), 2(w=0), 4(w=0), 5(w=0), 6(w=0),
+Node 2:  1(w=0), 2(w=0), 3(w=0), 5(w=0), 6(w=0),
+Node 3:  1(w=0), 2(w=0), 3(w=0), 4(w=0), 5(w=0), 6(w=0),
+Node 4:  1(w=0), 2(w=0), 3(w=0), 4(w=0), 5(w=0),
+Node 5:  1(w=0), 2(w=0), 3(w=0), 4(w=0), 5(w=0), 6(w=0),
+Node 6:  1(w=0), 2(w=0), 3(w=0), 4(w=0), 5(w=0), 6(w=0),
+Graph Name: Complement
+Node 1:  1(w=0), 4(w=0), 5(w=0), 6(w=0),
+Node 2:  2(w=0), 5(w=0), 6(w=0),
+Node 3:  3(w=0), 4(w=0), 6(w=0),
+Node 4:  1(w=0), 3(w=0), 4(w=0),
+Node 5:  1(w=0), 2(w=0), 5(w=0), 6(w=0),
+Node 6:  1(w=0), 2(w=0), 3(w=0), 5(w=0), 6(w=0),
+
+Enter your commands:  quit
+
+User1s-MacBook-Pro:zpp390-hw6 main$ clear
+
+User1s-MacBook-Pro:zpp390-hw6 main$ make
+gcc -I booklib -g -c graph.c
+gcc -I booklib -g -o graph graph.o qlist.o booklib/cslib.a
+User1s-MacBook-Pro:zpp390-hw6 main$ ./graph undirectedgraph1.txt 
+
+
+********************************LIST OF COMMNANDS*************************************
+
+			[  copy  ]: Copy Graph
+			[insert]: Insert an edge
+			[  delete  ]: Delete an edge
+			[eleminate]: Eleminate links
+			[  print_degree  ]:print degree
+			[  dfs  ]: Depth first search
+			[  bfs  ]: Breath first search
+			[  print_complement  ]: Print complement
+			[  print_degree  ]: print degree of graph
+			[  number_component  ]: Number of complement
+			[  different_links  ]: Different links
+			[  common_links  ]: Common links
+			[  print  ]: Print the graph
+			[  connected  ]:If the graph is Connected or not
+			Enter <help> for list of command
+			[  quit  ]: Quit program
+
+Enter your commands:  insert 
+
+Enter: (myg1 or myg2),[x],[y],[w]: myg1 3 4 10
+Graph Name: myg1
+Node 1:  2(w=3), 3(w=6),
+Node 2:  1(w=3), 3(w=1), 4(w=5),
+Node 3:  1(w=6), 2(w=1), 4(w=10), 5(w=2),
+Node 4:  2(w=5), 3(w=10), 5(w=3), 6(w=6),
+Node 5:  3(w=2), 4(w=3), 6(w=1),
+Node 6:  4(w=6), 5(w=1),
+
+Enter your commands:  delete    
+
+Enter: [myg1 or myg2], [x], [y]: myg2 6 5
+Graph Name: ***myg2 after delete****
+Node 1:  2(w=3), 3(w=6),
+Node 2:  1(w=3), 3(w=1), 4(w=5),
+Node 3:  1(w=6), 2(w=1), 5(w=2),
+Node 4:  2(w=5), 5(w=3), 6(w=6),
+Node 5:  3(w=2), 4(w=3),
+Node 6:  4(w=6),
+
+Enter your commands:  print
+
+Graph Name: myg1
+Node 1:  2(w=3), 3(w=6),
+Node 2:  1(w=3), 3(w=1), 4(w=5),
+Node 3:  1(w=6), 2(w=1), 4(w=10), 5(w=2),
+Node 4:  2(w=5), 3(w=10), 5(w=3), 6(w=6),
+Node 5:  3(w=2), 4(w=3), 6(w=1),
+Node 6:  4(w=6), 5(w=1),
+
+Graph Name: myg2
+Node 1:  2(w=3), 3(w=6),
+Node 2:  1(w=3), 3(w=1), 4(w=5),
+Node 3:  1(w=6), 2(w=1), 5(w=2),
+Node 4:  2(w=5), 5(w=3), 6(w=6),
+Node 5:  3(w=2), 4(w=3),
+Node 6:  4(w=6),
+
+Enter your commands:  eleminate  
+
+Enter: [myg1 or myg1], [minw], [maxW]: myg1 5 7
+Graph Name: ***Myg1 after elelinate link***
+Node 1:  3(w=6),
+Node 2:  4(w=5),
+Node 3: 
+Node 4:  6(w=6),
+Node 5: 
+Node 6: 
+
+Enter your commands:  print_complement
+
+ Enter:[myg1 or myg2]: myg1
+Graph Name: Complement
+Node 1:  1(w=0), 2(w=0), 4(w=0), 5(w=0), 6(w=0),
+Node 2:  1(w=0), 2(w=0), 3(w=0), 5(w=0), 6(w=0),
+Node 3:  1(w=0), 2(w=0), 3(w=0), 4(w=0), 5(w=0), 6(w=0),
+Node 4:  1(w=0), 2(w=0), 3(w=0), 4(w=0), 5(w=0),
+Node 5:  1(w=0), 2(w=0), 3(w=0), 4(w=0), 5(w=0), 6(w=0),
+Node 6:  1(w=0), 2(w=0), 3(w=0), 4(w=0), 5(w=0), 6(w=0),
+
+Enter your commands:  connected
+
+Enter:[myg1 or myg2] myg1
+Node [1]:  is visited
+Node [3]:  is visited
+ Not Connected
+ 
+Enter your commands:  number_component
+
+Enter:[myg1 or myg2] myg1
+Node [1]: visited
+Node [3]: visited
+Node [2]: visited
+Node [4]: visited
+Node [6]: visited
+Node [5]: visited
+ Count number of Component 3: 
+
+Enter your commands:  print
+
+Graph Name: myg1
+Node 1:  3(w=6),
+Node 2:  4(w=5),
+Node 3: 
+Node 4:  6(w=6),
+Node 5: 
+Node 6: 
+
+Graph Name: myg2
+Node 1:  2(w=3), 3(w=6),
+Node 2:  1(w=3), 3(w=1), 4(w=5),
+Node 3:  1(w=6), 2(w=1), 5(w=2),
+Node 4:  2(w=5), 5(w=3), 6(w=6),
+Node 5:  3(w=2), 4(w=3),
+Node 6:  4(w=6),
+
+Enter your commands:  print_degree
+
+ Enter: [myg1 or myg2]: ,yg1
+
+Enter your commands:  print_degree
+
+ Enter: [myg1 or myg2]: myg1
+Node[1] degree 1
+Node[2] degree 1
+Node[3] degree 0
+Node[4] degree 1
+Node[5] degree 0
+Node[6] degree 0
+
+Enter your commands:  print_degree
+
+ Enter: [myg1 or myg2]: myg2
+Node[1] degree 2
+Node[2] degree 3
+Node[3] degree 3
+Node[4] degree 3
+Node[5] degree 2
+Node[6] degree 1
+
+Enter your commands:  copy
+
+Graph Name: myg1
+Node 1:  3(w=6),
+Node 2:  4(w=5),
+Node 3: 
+Node 4:  6(w=6),
+Node 5: 
+Node 6: 
+
+Graph Name: myg2 (Copy Graph) 
+Node 1:  3(w=6),
+Node 2:  4(w=5),
+Node 3: 
+Node 4:  6(w=6),
+Node 5: 
+Node 6: 
+
+Enter your commands:  quit
+
+User1s-MacBook-Pro:zpp390-hw6 main$ make
+make: Nothing to be done for `all'.
+User1s-MacBook-Pro:zpp390-hw6 main$ ./graph directedgraph.txt 
+
+
+********************************LIST OF COMMNANDS*************************************
+
+			[  copy  ]: Copy Graph
+			[insert]: Insert an edge
+			[  delete  ]: Delete an edge
+			[eleminate]: Eleminate links
+			[  print_degree  ]:print degree
+			[  dfs  ]: Depth first search
+			[  bfs  ]: Breath first search
+			[  print_complement  ]: Print complement
+			[  print_degree  ]: print degree of graph
+			[  number_component  ]: Number of complement
+			[  different_links  ]: Different links
+			[  common_links  ]: Common links
+			[  print  ]: Print the graph
+			[  connected  ]:If the graph is Connected or not
+			Enter <help> for list of command
+			[  quit  ]: Quit program
+
+Enter your commands:  dfs
+
+myg1 or myg2??:myg1
+
+
+Enter your starting edge: 1
+
+Node [1]:  is visited
+Node [2]:  is visited
+Node [3]:  is visited
+Node [5]:  is visited
+Node [6]:  is visited
+
+Enter your commands:  bfs
+
+ Enter:[myg1 or myg2],[starting edge]:  myg1
+2
+Node [2]: visited
+
