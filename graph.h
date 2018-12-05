@@ -11,6 +11,7 @@
 #define RESET   "\x1b[0m"
 // typedef enum {FALSE, TRUE} bool;
 #define MAXV 100
+#include <stdio.h>
 
 typedef struct edgenode {
     int y;
@@ -48,17 +49,21 @@ void listCommand (){
     printf ("\n\n");
     printf ("********************************"EXTRA3"LIST OF COMMNANDS"RESET"*************************************\n");
     printf ("\n");
-    printf("\t\t\t[insert]: Insert edge\n" );
-    printf(GREEN"\t\t\t[delete]: Delete an edge" RESET"\n");
+    printf("\t\t\t%c[4m[  copy  ]: Copy Graph\n%c[0m",27,27);
+    printf("\t\t\t[insert]: Insert an edge\n" );
+    printf(GREEN"\t\t\t[  delete  ]: Delete an edge" RESET"\n");
     printf (YELLOW"\t\t\t[eleminate]: Eleminate links" RESET"\n");
-    printf (BLUE"\t\t\t[dfs]: Depth first search"RESET"\n");
-    printf (MAGENTA"\t\t\t[bfs]: Breath first search"RESET"\n");
-    printf (CYAN"\t\t\t[print_complement]: Print complement"RESET"\n");
-    printf (EXTRA1"\t\t\t[number_component]: Number of complement"RESET"\n");
-    printf (EXTRA2"\t\t\t[different_links]: Different links"RESET"\n");
-    printf (EXTRA3"\t\t\t[common_links]: Common links"RESET"\n");
-    printf ("\t\t\t[print]: Print the graph\n");
-    printf (CYAN"\t\t\t[connected]:If the graph is Connected or not"RESET"\n");
-    printf (RED"\t\t\t[quit]: Quit program"RESET"\n");
+    printf ("\t\t\t[  print_degree  ]:print degree\n");
+    printf (BLUE"\t\t\t[  dfs  ]: Depth first search"RESET"\n");
+    printf (MAGENTA"\t\t\t[  bfs  ]: Breath first search"RESET"\n");
+    printf (CYAN"\t\t\t[  print_complement  ]: Print complement"RESET"\n");
+    printf ("\t\t\t[  print_degree  ]: print degree of graph\n" );
+    printf (EXTRA1"\t\t\t[  number_component  ]: Number of complement"RESET"\n");
+    printf (EXTRA2"\t\t\t[  different_links  ]: Different links"RESET"\n");
+    printf (EXTRA3"\t\t\t[  common_links  ]: Common links"RESET"\n");
+    printf ("\t\t\t[  print  ]: Print the graph\n");
+    printf (CYAN"\t\t\t[  connected  ]:If the graph is Connected or not"RESET"\n");
+    printf("\t\t\tEnter <help> for list of command\n");
+    printf (RED"\t\t\t[  quit  ]: Quit program"RESET"\n");
     
 }; 

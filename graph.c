@@ -5,7 +5,6 @@
 #include "queue.h"
 #include "graph.h"
 
-// put prototypes for other functions here....
 
 int main(int argc, char *argv[])
 {
@@ -24,12 +23,7 @@ int main(int argc, char *argv[])
     }
     initialize_graph(myg1, FALSE);
     read_graph(myg1,argv[1]);
-    print_graph(myg1, "myg1");
-    // first implement copy_graph function and call it here
     myg2 = copy_graph(myg1);
-    printf ("\n");
-    print_graph(myg2, "myg2");
-    
     /****************Main Menu ***********/
     
     listCommand();
@@ -43,18 +37,29 @@ int main(int argc, char *argv[])
         }
         else if (equal(command,"insert")){
             int x, y,w;
-            printf (EXTRA3"Enter: (myg1 or myg2),[x],[y],[w]:"RESET);
+            printf (EXTRA3"Enter: (myg1 or myg2),[x],[y],[w]: "RESET);
             scanf ("%s %d %d %d", command2, &x,&y,&w);
             if(equal(command2,"myg1")){
-                if (myg1 ->directed == FALSE){
+                insert_edge(myg1,x,y,w);
+                if(myg1->directed == FALSE){
                     insert_edge(myg1,y,x,w);
                 }
-                insert_edge(myg1,x,y,w);
-                print_graph(myg1,"myg1");}
-            else {
+                print_graph(myg1,"myg1");
+            }
+            else if (equal(command2,"myg2")){
                 insert_edge(myg2,x,y,w);
+                if(myg2->directed == FALSE){
+                    insert_edge(myg2,y,x,w);
+                }
                 print_graph(myg2,"myg2");
             }
+        }
+        else if (equal(command,"copy")){
+            print_graph(myg1, "myg1");
+            // first implement copy_graph function and call it here
+            myg2 = copy_graph(myg1);
+            printf ("\n");
+            print_graph(myg2, "myg2 (Copy Graph) ");
         }
         else if ( equal(command,"dfs")){
             printf ("myg1 or myg2??:" );
@@ -62,23 +67,29 @@ int main(int argc, char *argv[])
             printf ("\n");
             int v;
             int i;
-            if ( equal ( command2,"myg2")){
+            if(equal ( command2,"myg2")){
                 printf ("\nEnter your starting edge: " );
                 scanf ("%d",&v );
                 printf( "\n" );
                 setVisited_zero(myg2);
-                dfs (myg2, v);}
-            else {
-                printf ("\nEnter your starting edge: " );
-                scanf ("%d",&v );
-                printf( "\n" );
-                setVisited_zero(myg1);
-                dfs (myg1, v);
+                dfs (myg2, v);
+                
             }
+            printf ("\nEnter your starting edge: " );
+            scanf ("%d",&v );
+            printf( "\n" );
+            setVisited_zero(myg1);
+            dfs (myg1, v);
         }
         else if ( equal (command,"print_complement")){
+            printf(" Enter:[myg1 or myg2]: ");
+            scanf("%s",command2); 
+            if (equal(command2,"myg1")){
             print_complement (myg1);
+            }
+            else{
             print_complement (myg2);
+            }
         }
         else if ( equal (command,"delete")){
             printf (GREEN"Enter: [myg1 or myg2], [x], [y]: "RESET);
@@ -89,91 +100,121 @@ int main(int argc, char *argv[])
                 if ( myg1->directed == FALSE){
                     delete_edge(myg1, value, node);
                 }
-                print_graph(myg1, "myg1");
+                print_graph(myg1, "****myg1 after delete****");
             }
-            else{
+            else if (equal(command2,"myg2")){
                 delete_edge( myg2, node,value);
                 if ( myg2->directed == FALSE){
                     delete_edge(myg2, value, node);
                 }
-                print_graph(myg2, "myg2 After delete");
+                print_graph(myg2, "***myg2 after delete****");
             }
         }
-    else if ( equal (command, "number_component")){
-        numofCon(myg1);
-        numofCon(myg2);
-    }
-    else if ( equal (command,"print_degree")){
-        printf (" Enter: [myg1 or myg2]: ");
-        scanf ("%s",command2);
-        
-        print_degree(myg1);
-        print_degree(myg2);
-    }
-    else  if ( equal (command,"eleminate") ){
-        int minW, maxW;
-        printf ("Enter: [myg1 or myg1], [minw], [maxW]: " );
-        scanf ("%s %d %d",command2, &minW, &maxW);
-        if ( equal (command2,"myg1")){
-            eleminate_links (myg1,minW, maxW);
-            print_graph (myg1, "Myg1 after elelinate link:" );}
-        else {
-            eleminate_links (myg2,minW, maxW);
-            print_graph (myg1, "Myg2 after elelinate link:" );
+        else if ( equal (command, "number_component")){
+            printf ("Enter:[myg1 or myg2] ");
+            scanf ("%s",command2);
+            if (equal(command2,"myg1")){
+                numofCon(myg1);
+            }
+            else{
+                numofCon (myg2);
+            }
         }
-    }
-    else if (equal(command,"quit")){
-        free_graph(myg1);
-        free_graph(myg2);
-        exit(-1);
-    }
-    else if (equal(command,"bfs")){
-        printf (" Enter your starting edge: " );
-        int start;
-        scanf ("%d", &start);
-        printf( "\n" );
-        bfs (myg2, start);
-    }
-    else if (equal (command,"n" )){
-        numofCon(myg1);
-    }
-    else if (equal(command,"common_links")){
-        print_graph (myg1,"myg1");
-        print_graph (myg2," myg2");
-        printf ("\n**** Common Links ****\n" );
-        common_links ( myg1, myg2);
-    }
-    else if (equal (command,"different_links")){
-        printf ("Enter:[myg1 or myg2] ");
-        scanf ("%s",command2);
-        if (equal(command2,"myg2")){
-            print_graph(myg1,"Myg1\n" );
+        else if ( equal (command,"print_degree")){
+            printf (" Enter: [myg1 or myg2]: ");
+            scanf ("%s",command2);
+            if ( equal(command2,"myg1")){
+                print_degree(myg1);
+            }
+            else if (equal(command2,"myg2")){
+                print_degree(myg2);
+            }
+        }
+        else  if ( equal (command,"eleminate") ){
+            int minW, maxW;
+            printf ("Enter: [myg1 or myg1], [minw], [maxW]: " );
+            scanf ("%s %d %d",command2, &minW, &maxW);
+            if ( equal (command2,"myg1")){
+                eleminate_links (myg1,minW, maxW);
+                print_graph (myg1, "***Myg1 after elelinate link***" );}
+            else if (equal(command2,"myg2")){
+                eleminate_links (myg2,minW, maxW);
+                print_graph (myg1, "***Myg2 after elelinate link***" );
+            }
+        }
+        else if (equal(command,"quit")){
+            free_graph(myg1);
+            free_graph(myg2);
+            exit(-1);
+        }
+        else if (equal(command,"bfs")){
+            int start;
+            printf(" Enter:[myg1 or myg2],[starting edge]:  " );
+            scanf ("%s %d", command2,&start);
+            if (equal(command2,"myg2")){
+                bfs (myg2, start);
+            }
+            else if (equal(command2,"myg1")){
+                bfs (myg1, start);
+            }
+        }
+        else if (equal (command,"number_component" )){
+            numofCon(myg1);
+        }
+        else if (equal(command,"common_links")){
+            printf ("Enter:[myg1 or myg2]: ");
+            scanf ("%s", command2);
+            if (equal(command2,"myg1")){
+                print_graph (myg1,"myg1");
+                print_graph (myg2," myg2");
+                printf ("\n**** Common Links (myg1 ∪ myg2) ****\n" );
+                common_links ( myg1, myg2);
+            }
+            else if (equal(command2,"myg2")){
+                print_graph (myg1,"myg1");
+                print_graph (myg2,"myg2");
+                printf ("\n**** Common Links(myg2 ∪ myg1)****\n" );
+                common_links ( myg2, myg1);
+            }
+        }
+        else if (equal (command,"different_links")){
+            printf ("Enter:[myg1 or myg2] ");
+            scanf ("%s",command2);
+            if (equal(command2,"myg2")){
+                print_graph(myg1,"Myg1\n" );
+                printf ("\n");
+                print_graph(myg2,"Myg2\n" );
+                printf ("\n\n**** Myg2 - Myg1 ****\n\n" );
+                different_links (myg2, myg1);
+            }
+            else if (equal(command2,"myg1")){
+                print_graph(myg1,"Myg1\n" );
+                printf ("\n");
+                print_graph(myg2,"Myg2\n" );
+                printf ("\n\n**** Myg1 - Myg2****\n\n" );
+                different_links (myg1, myg2);
+            }
+        }
+        else if (equal ( command,"connected")){
+            printf ("Enter:[myg1 or myg2] ");
+            scanf ("%s",command2);
+            if (equal(command2,"myg1")){
+                isConnected (myg1);
+            }
+            else if (equal(command2,"myg2")){
+                isConnected (myg1);
+            }
+        }
+        else if (equal(command,"print")){
+            print_graph (myg1,"myg1" );
             printf ("\n");
-            print_graph(myg2,"Myg2\n" );
-            printf ("\n\n**** Myg1 - Myg2 ****\n\n" );
-            different_links (myg2, myg1);
+            print_graph (myg2,"myg2" );
         }
-        else {
-            print_graph(myg1,"Myg1\n" );
-             printf ("\n");
-            print_graph(myg2,"Myg2\n" );
-            printf ("\n\n**** Myg2 - Myg1****\n\n" );
-            different_links (myg1, myg2);
+        else{
+            printf("Unrecognized command. ");
+            printf("Type \"help\" for a list of commands.\n");
         }
     }
-    else if (equal ( command,"connected")){
-        isConnected (myg1);
-    }
-    else if (equal(command,"print")){
-        print_graph (myg1,"myg1" );
-        printf ("\n");
-        print_graph (myg2,"myg2" );
-    }
-    else{
-        printf("Unrecognized command. ");
-        printf("Type \"help\" for a list of commands.\n");
-    }
-}
 }
 // NOW in a loop get commands and
 // call related functions to perform them...
@@ -241,7 +282,6 @@ void insert_edge(graphT *g, int x, int y, int w)
             free(pe);
             return;
         }
-        
         prev = curr;
         curr = curr ->next;
     }
@@ -395,6 +435,10 @@ void  isConnected  (graphT *g){
     
     int i;
     edgenodeT *pe;
+    if ( g ->directed){
+        printf (" Purchase the next version of this program :)\n");
+        return;
+    }
     dfs(g,1);
     for (i = 1; i <= g ->nvertices; i ++ ){
         g ->visited[i] = 0;
@@ -518,19 +562,17 @@ void common_links (graphT *g1, graphT *g2) {
             if( pe1 ->y < pe2 ->y){
                 pe1 = pe1 ->next;
             }
-            if( pe1 ->y > pe2 ->y){
+            else if( pe1 ->y > pe2 ->y){
                 pe2 = pe2 ->next;
             }
-            else{
-                printf ("Node[%d] ---> %d\n", i , pe1 ->y);
+            else{   // they both equal
+                printf ("Node[%d] ---> %d(w=%d)\n", i , pe1 ->y,pe1->weight);
                 pe1 = pe1 ->next;
                 pe2 = pe2 ->next;
             }
         }
     }
 }
-
-
 void setVisited_zero (graphT * g){
     
     int i ;
@@ -552,15 +594,18 @@ void different_links (graphT *g1, graphT *g2) {
                 printf ("Node[%d] ---> %d(w=%d)\n", i , pe1 ->y, pe1 ->weight);
                 pe1 = pe1 ->next;
             }
-            if( pe1 ->y > pe2 ->y){
-                printf ("Node[%d] ---> %d(w=%d)\n", i , pe1 ->y, pe1->weight);
+            else if( pe1 ->y > pe2 ->y){
+                // printf ("Node[%d] ---> %d(w=%d)\n", i , pe1 ->y, pe1->weight);
                 pe2 = pe2 ->next;
             }
             else{
                 pe1 = pe1 ->next;
                 pe2 = pe2 ->next;
             }
-           
+        }
+        while (pe1 != NULL){
+            printf ("Node[%d] ---> %d(w=%d)\n", i , pe1 ->y, pe1 ->weight);
+            pe1 = pe1 ->next;
         }
     }
 }
